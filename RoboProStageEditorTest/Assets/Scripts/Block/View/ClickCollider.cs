@@ -2,34 +2,46 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ClickCollider : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
+public class ClickCollider : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField] ClickAxis axis;
     [SerializeField] Transform master;
 
+    public event Action<Vector3Int> OnDownLeft;
+    public event Action<Vector3Int> OnDownRight;
+    public event Action<Vector3Int> OnDownMiddle;
     public event Action<Vector3Int> OnClickRight;
-    public event Action<Vector3Int> OnClickLeft;
-    public event Action<Vector3Int> OnClickMiddle;
 
     public void OnPointerDown(PointerEventData eventData)
     {
         if (Input.GetMouseButtonDown(0))
         {
-            OnClickRight?.Invoke(new Vector3Int(
+            OnDownLeft?.Invoke(new Vector3Int(
                 Mathf.RoundToInt(master.position.x),
                 Mathf.RoundToInt(master.position.y),
                 Mathf.RoundToInt(master.position.z)));
         }
         if (Input.GetMouseButtonDown(1))
         {
-            OnClickLeft?.Invoke(new Vector3Int(
+            OnDownRight?.Invoke(new Vector3Int(
                 Mathf.RoundToInt(master.position.x),
                 Mathf.RoundToInt(master.position.y),
                 Mathf.RoundToInt(master.position.z)));
         }
         if (Input.GetMouseButtonDown(2))
         {
-            OnClickMiddle?.Invoke(new Vector3Int(
+            OnDownMiddle?.Invoke(new Vector3Int(
+                Mathf.RoundToInt(master.position.x),
+                Mathf.RoundToInt(master.position.y),
+                Mathf.RoundToInt(master.position.z)));
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (Input.GetMouseButtonUp(1))
+        {
+            OnClickRight?.Invoke(new Vector3Int(
                 Mathf.RoundToInt(master.position.x),
                 Mathf.RoundToInt(master.position.y),
                 Mathf.RoundToInt(master.position.z)));

@@ -6,56 +6,52 @@ public class MoveHandle : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 {
     [SerializeField] private Axis axis;
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset = new Vector3(24, 35, 24);
     [SerializeField] private DetailEdit edit;
-
-    private Vector3 multiplyAxis;
-    private Vector3 nowMousePosition;
-
-    private void Start()
-    {
-        switch (axis)
-        {
-            case Axis.X:
-                multiplyAxis = Vector3.right;
-                break;
-            case Axis.Y:
-                multiplyAxis = Vector3.up;
-                break;
-            case Axis.Z:
-                multiplyAxis = Vector3.forward;
-                break;
-        }
-    }
+    [SerializeField] private float moveSpeed = 10;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        nowMousePosition = (Camera.main.ScreenToWorldPoint(eventData.position) - offset);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector3 mousePos = (Camera.main.ScreenToWorldPoint(eventData.position) - offset);
-        Vector3 move = mousePos - nowMousePosition;
-        
-        move.x *= multiplyAxis.x;
-        move.y *= multiplyAxis.y;
-        move.z *= multiplyAxis.z;
-        
-        target.position += move;
+        Ray ray = Camera.main.ScreenPointToRay(eventData.position);
+        Plane plane = new Plane();
 
-        nowMousePosition = mousePos;
+        switch(axis)
+        {
+            case Axis.X:
+                plane = new Plane(Vector3.forward, 0);
+                break;
+            case Axis.Y:
+                plane = new Plane(Vector3.right, 0);
+                break;
+            case Axis.Z:
+                plane = new Plane(Vector3.up, 0);
+                break;
+        }
 
-        edit.SetPosition(target.position);
+        plane.Raycast(ray, out float distance);
+        Vector3 pos = ray.GetPoint(distance);
+
+        switch (axis)
+        {
+            case Axis.X:
+                pos = new Vector3(pos.x, target.position.y, target.position.z);
+                break;
+            case Axis.Y:
+                pos = new Vector3(target.position.x, pos.y, target.position.z);
+                break;
+            case Axis.Z:
+                pos = new Vector3(target.position.x, target.position.y, pos.z);
+                break;
+        }
+
+        edit.SetPosition(pos);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-    }
-
-    private void Update()
-    {
-        
     }
 
     public enum Axis

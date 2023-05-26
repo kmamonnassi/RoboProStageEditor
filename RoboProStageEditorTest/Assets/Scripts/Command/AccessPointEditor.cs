@@ -30,7 +30,37 @@ public class AccessPointEditor : MonoBehaviour
                 accessPointData.Commands.Add(new CommandStruct());
                 blockIns.StageData.AccessPointDatas.Add(accessPointData);
 
-                data.Item4.X.OnClickMiddle += pos =>
+                data.Item4.X_Plus.OnDownMiddle += pos =>
+                {
+                    StartEdit(id);
+                    Debug.Log(id);
+                };
+
+                data.Item4.Y_Plus.OnDownMiddle += pos =>
+                {
+                    StartEdit(id);
+                    Debug.Log(id);
+                };
+
+                data.Item4.Z_Plus.OnDownMiddle += pos =>
+                {
+                    StartEdit(id);
+                    Debug.Log(id);
+                };
+
+                data.Item4.X_Minus.OnDownMiddle += pos =>
+                {
+                    StartEdit(id);
+                    Debug.Log(id);
+                };
+
+                data.Item4.Y_Minus.OnDownMiddle += pos =>
+                {
+                    StartEdit(id);
+                    Debug.Log(id);
+                };
+
+                data.Item4.Z_Minus.OnDownMiddle += pos =>
                 {
                     StartEdit(id);
                     Debug.Log(id);

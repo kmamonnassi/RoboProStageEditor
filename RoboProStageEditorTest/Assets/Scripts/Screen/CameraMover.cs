@@ -6,57 +6,32 @@ public class CameraMover : MonoBehaviour
     [SerializeField] private float speed = 30;
     [SerializeField] private float keyMoveSpeed = 30;
     [SerializeField] private Camera cam;
-    [SerializeField] private Vector3 offset;
     [SerializeField] private float zoomSpeed = 20;
-
-    private Vector3 mousePos;
-    private Vector3 movedPos;
+    [SerializeField] private float rotateSpeed = 20;
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(2))
-        {
-            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        }
-
+        Vector3 horiKey = cam.transform.TransformDirection(Vector3.right) * -Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+        Vector3 vertKey = cam.transform.TransformDirection(Vector3.forward) * -Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        Vector3 horiMouse = Vector3.zero;
+        Vector3 vertMouse = Vector3.zero;
         if (Input.GetMouseButton(2))
         {
-            Vector3 nowMousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 movePos = (mousePos - nowMousePos) * speed;
-            movedPos += movePos;
-            cam.transform.position = movedPos + offset;
-            mousePos = nowMousePos;
+            horiMouse = cam.transform.TransformDirection(Vector3.right) * Input.GetAxis("Mouse X") * Time.deltaTime * speed;
+            vertMouse = cam.transform.TransformDirection(Vector3.up) * Input.GetAxis("Mouse Y") * Time.deltaTime * speed;
         }
+        cam.transform.position += horiMouse + vertMouse + horiKey + vertKey;
 
         if (Input.mouseScrollDelta.y != 0 && !isEnteredUI.Entered)
         {
-            cam.orthographicSize += Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime;
+            cam.transform.position += cam.transform.forward * Time.deltaTime * zoomSpeed * Input.mouseScrollDelta.y;
         }
 
-        KeyMove();
-    }
-
-    private void KeyMove()
-    {
-        if (Input.GetKey(KeyCode.W))
+        if(Input.GetMouseButton(1))
         {
-            movedPos += Vector3.forward * Time.deltaTime * keyMoveSpeed;
+            float x = transform.eulerAngles.x + Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
+            float y = transform.eulerAngles.y - Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
+            cam.transform.eulerAngles = new Vector3(x, y, cam.transform.eulerAngles.z);
         }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            movedPos += Vector3.left * Time.deltaTime * keyMoveSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            movedPos += Vector3.back * Time.deltaTime * keyMoveSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            movedPos += Vector3.right * Time.deltaTime * keyMoveSpeed;
-        }
-        cam.transform.position = movedPos + offset;
     }
 }

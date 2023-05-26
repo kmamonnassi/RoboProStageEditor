@@ -32,7 +32,7 @@ public class BlockInstantiater : MonoBehaviour
             for(int z = 0; z < 100; z++)
             {
                 ClickCollider col = Instantiate(groundPrefab, new Vector3(x, -1, z), Quaternion.identity, groundParent);
-                col.OnClickRight += pos =>
+                col.OnDownLeft += pos =>
                 {
                     InstantiateBlockByClick(new Vector3Int(pos.x, 0, pos.z));
                 };
@@ -119,27 +119,54 @@ public class BlockInstantiater : MonoBehaviour
         BlockClickCollider clickCollider = Instantiate(blockClickPrfeab, block.transform);
         clickCollider.transform.localPosition = Vector3.zero;
 
-        clickCollider.X.OnClickRight += pos =>
+        clickCollider.X_Plus.OnDownLeft += pos =>
         {
             InstantiateBlockByClick(position + new Vector3Int(1, 0, 0));
         };
-        clickCollider.Y.OnClickRight += pos =>
+        clickCollider.Y_Plus.OnDownLeft += pos =>
         {
             InstantiateBlockByClick(position + new Vector3Int(0, 1, 0));
         };
-        clickCollider.Z.OnClickRight += pos =>
+        clickCollider.Z_Plus.OnDownLeft += pos =>
         {
             InstantiateBlockByClick(position + new Vector3Int(0, 0, 1));
         };
-        clickCollider.X.OnClickLeft += pos =>
+
+        clickCollider.X_Minus.OnDownLeft += pos =>
+        {
+            InstantiateBlockByClick(position + new Vector3Int(-1, 0, 0));
+        };
+        clickCollider.Y_Minus.OnDownLeft += pos =>
+        {
+            InstantiateBlockByClick(position + new Vector3Int(0, -1, 0));
+        };
+        clickCollider.Z_Minus.OnDownLeft += pos =>
+        {
+            InstantiateBlockByClick(position + new Vector3Int(0, 0, -1));
+        };
+
+        clickCollider.X_Plus.OnClickRight += pos =>
         {
             InstantiateBlockByClick(BlockID.Null, pos);
         };
-        clickCollider.Y.OnClickLeft += pos =>
+        clickCollider.Y_Plus.OnClickRight += pos =>
         {
             InstantiateBlockByClick(BlockID.Null, pos);
         };
-        clickCollider.Z.OnClickLeft += pos =>
+        clickCollider.Z_Plus.OnClickRight += pos =>
+        {
+            InstantiateBlockByClick(BlockID.Null, pos);
+        };
+
+        clickCollider.X_Minus.OnClickRight += pos =>
+        {
+            InstantiateBlockByClick(BlockID.Null, pos);
+        };
+        clickCollider.Y_Minus.OnClickRight += pos =>
+        {
+            InstantiateBlockByClick(BlockID.Null, pos);
+        };
+        clickCollider.Z_Minus.OnClickRight += pos =>
         {
             InstantiateBlockByClick(BlockID.Null, pos);
         };

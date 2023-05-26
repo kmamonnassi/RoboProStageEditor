@@ -11,14 +11,10 @@ public class BlockView : MonoBehaviour
 
     public event Action OnDelete;
 
-    private void Start()
-    {
-        transform.position += offset;
-    }
-
     public void SetPosition(Vector3Int position)
     {
         Position = position;
+        transform.position += offset;
     }
 
     private void OnDestroy()
