@@ -115,3 +115,9 @@ MonoBehaviour:
   - id: 207
     obj_Odd: {fileID: 6793522796009834574, guid: 99382ddc3bf6c9a42ad134097210a3ec, type: 3}
     obj_Even: {fileID: 6793522796009834574, guid: 99382ddc3bf6c9a42ad134097210a3ec, type: 3}
+  - id: 10
+    obj_Odd: {fileID: 545770709494930542, guid: b51df634d526165489d7992f0b1dca75, type: 3}
+    obj_Even: {fileID: 4064431723842051075, guid: 9d66c63c26c530342a8861af3971d297, type: 3}
+  - id: 11
+    obj_Odd: {fileID: 8714419554080313579, guid: 2f8eaad2231174d459dd6c96f93f52bf, type: 3}
+    obj_Even: {fileID: 8714419554080313579, guid: 2f8eaad2231174d459dd6c96f93f52bf, type: 3}

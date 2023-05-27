@@ -101,7 +101,6 @@ public class BlockInstantiater : MonoBehaviour
     public void InstantiateBlock(BlockID blockID, Vector3Int position)
     {
         StageData.Blocks.SetBlock(blockID, position.x, position.y, position.z);
-        Debug.Log(JsonUtility.ToJson(StageData));
 
         if (blockID == BlockID.Null)
         {
