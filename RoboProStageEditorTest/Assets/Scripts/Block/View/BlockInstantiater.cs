@@ -42,11 +42,11 @@ public class BlockInstantiater : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Z) && Input.GetKey(KeyCode.LeftControl))
         {
             Undo();
         }
-        if (Input.GetKeyDown(KeyCode.Y) && Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.Y) && Input.GetKey(KeyCode.LeftControl))
         {
             Redo();
         }

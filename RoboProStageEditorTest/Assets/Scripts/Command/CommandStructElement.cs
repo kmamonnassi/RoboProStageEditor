@@ -1,6 +1,7 @@
 using Command;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,19 +18,19 @@ public class CommandStructElement : MonoBehaviour
 
     private void Start()
     {
-        Array commands = Enum.GetValues(typeof(MainCommandType));
+        List<MainCommandType> commands = ((MainCommandType[])Enum.GetValues(typeof(MainCommandType))).ToList().OrderBy(x => x).ToList();
         List<string> commandOptions = new List<string>();
-        for(int i = 0; i < commands.Length; i++)
+        for(int i = 0; i < commands.Count; i++)
         {
-            commandOptions.Add(commands.GetValue(i).ToString());
+            commandOptions.Add(commands[i].ToString());
         }
         commandTypeDropDown.AddOptions(commandOptions);
 
-        Array axises = Enum.GetValues(typeof(CoordinateAxis));
+        List<CoordinateAxis> axises = ((CoordinateAxis[])Enum.GetValues(typeof(CoordinateAxis))).ToList().OrderBy(x => x).ToList();
         List<string> axisOptions = new List<string>();
-        for (int i = 0; i < axises.Length; i++)
+        for (int i = 0; i < axises.Count; i++)
         {
-            axisOptions.Add(axises.GetValue(i).ToString());
+            axisOptions.Add(axises[i].ToString());
         }
         axisDropDown.AddOptions(axisOptions);
 
@@ -43,19 +44,23 @@ public class CommandStructElement : MonoBehaviour
 
     public void SetStruct(CommandStruct cSt)
     {
-        commandTypeDropDown.SetValueWithoutNotify((int)cSt.CommandType);
+        int command_idx = commandTypeDropDown.options.FindIndex(x => x.text == cSt.CommandType.ToString());
+        commandTypeDropDown.SetValueWithoutNotify(command_idx);
         lookCommandToggle.SetIsOnWithoutNotify(cSt.LockCommand);
         lookNumberToggle.SetIsOnWithoutNotify(cSt.LockNumber);
         lookAxisToggle.SetIsOnWithoutNotify(cSt.LockCoordinateAxis);
         valueInput.SetTextWithoutNotify(cSt.Value.ToString());
-        axisDropDown.SetValueWithoutNotify((int)cSt.Axis);
+
+        int axis_idx = axisDropDown.options.FindIndex(x => x.text == cSt.Axis.ToString());
+        axisDropDown.SetValueWithoutNotify(axis_idx);
 
         targetStruct = cSt;
     }
 
     private void SetCommandType(int id)
     {
-        targetStruct.CommandType = (MainCommandType)id;
+        MainCommandType type = (MainCommandType)Enum.Parse(typeof(MainCommandType), commandTypeDropDown.options[id].text);
+        targetStruct.CommandType = type;
     }
 
     private void SetLockCommand(bool b)
@@ -80,8 +85,9 @@ public class CommandStructElement : MonoBehaviour
         Debug.Log(int.Parse(value));
     }
 
-    private void SetAxis(int axis)
+    private void SetAxis(int id)
     {
-        targetStruct.Axis = (CoordinateAxis)axis;
+        CoordinateAxis type = (CoordinateAxis)Enum.Parse(typeof(CoordinateAxis), axisDropDown.options[id].text);
+        targetStruct.Axis = type;
     }
 }

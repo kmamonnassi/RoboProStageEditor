@@ -1,14 +1,14 @@
 fileFormatVersion: 2
 guid: 29d6f16301ec82044977fc01df5f5e8a
 ModelImporter:
-  serializedVersion: 21202
+  serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 49139e933338bdf4da5053556fbe6813, type: 2}
+    second: {fileID: 2100000, guid: a27ffc86498edd04eb4c4948c788c478, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -104,6 +104,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -4,6 +4,7 @@ public class CameraMover : MonoBehaviour
 {
     [SerializeField] private IsEnteredUI isEnteredUI;
     [SerializeField] private float speed = 30;
+    [SerializeField] private float verticalSpeed = 15;
     [SerializeField] private float keyMoveSpeed = 30;
     [SerializeField] private Camera cam;
     [SerializeField] private float zoomSpeed = 20;
@@ -32,6 +33,16 @@ public class CameraMover : MonoBehaviour
             float x = transform.eulerAngles.x + Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
             float y = transform.eulerAngles.y - Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
             cam.transform.eulerAngles = new Vector3(x, y, cam.transform.eulerAngles.z);
+        }
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            cam.transform.position += Vector3.down * Time.deltaTime * verticalSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            cam.transform.position += Vector3.up * Time.deltaTime * verticalSpeed;
         }
     }
 }

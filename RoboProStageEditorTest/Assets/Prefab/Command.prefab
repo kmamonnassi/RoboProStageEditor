@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30B3\u30DE\u30F3\u30C9\u79FB\u52D5\u53EF\u80FD"
+  m_Text: "\u30B3\u30DE\u30F3\u30C9\u79FB\u52D5\u4E0D\u53EF"
 --- !u!1 &1835665440441430254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,7 +2236,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 60}
+  m_SizeDelta: {x: 0, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1835665441695508999
 MonoBehaviour:
@@ -2343,7 +2343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u8EF8\u79FB\u52D5\u53EF\u80FD"
+  m_Text: "\u8EF8\u79FB\u52D5\u4E0D\u53EF"
 --- !u!1 &1835665441737848567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3000,7 +3000,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5024\u79FB\u52D5\u53EF\u80FD"
+  m_Text: "\u5024\u79FB\u52D5\u4E0D\u53EF"
 --- !u!1 &1835665442107895818
 GameObject:
   m_ObjectHideFlags: 0

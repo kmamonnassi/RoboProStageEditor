@@ -63,5 +63,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gimmic_Block_Green
       objectReference: {fileID: 0}
+    - target: {fileID: 5095102219966757606, guid: 1e924e78f71340c42896757a080cf106, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 955cd15d009288843bb86e2be7fe1cf3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e924e78f71340c42896757a080cf106, type: 3}

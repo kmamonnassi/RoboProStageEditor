@@ -27,7 +27,15 @@ public class AccessPointEditor : MonoBehaviour
             {
                 AccessPointData accessPointData = new AccessPointData();
                 accessPointData.ColorID = BlockIDConvertTo(id);
-                accessPointData.Commands.Add(new CommandStruct());
+
+                CommandStruct firstStruct = new CommandStruct(MainCommandType.Move, false, false, false, 1, CoordinateAxis.X, 0);
+                CommandStruct secondStruct = new CommandStruct(MainCommandType.None, true, true, true, 0, CoordinateAxis.NONE, 0);
+                CommandStruct thirdStruct = new CommandStruct(MainCommandType.None, true, true, true, 0, CoordinateAxis.NONE, 0);
+                accessPointData.Commands.Add(firstStruct);
+                accessPointData.Commands.Add(secondStruct);
+                accessPointData.Commands.Add(thirdStruct);
+                
+                
                 blockIns.StageData.AccessPointDatas.Add(accessPointData);
 
                 data.Item4.X_Plus.OnDownMiddle += pos =>
